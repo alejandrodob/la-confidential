@@ -8,18 +8,12 @@ const DebtsSummary = (props) => (
     <PaperTitle text='Estado Cuentas' />
     <Table selectable={false} >
       <TableBody displayRowCheckbox={false} >
-        <TableRow>
-          <TableRowColumn>Felipe</TableRowColumn>
-          <TableRowColumn>Debe: 100€</TableRowColumn>
-        </TableRow>
-        <TableRow>
-          <TableRowColumn>José</TableRowColumn>
-          <TableRowColumn>Debe: 100€</TableRowColumn>
-        </TableRow>
-        <TableRow>
-          <TableRowColumn>Aswel</TableRowColumn>
-          <TableRowColumn>Le deben: 200€</TableRowColumn>
-        </TableRow>
+        {props.debts.map((debt, index) => (
+          <TableRow key={index} >
+            <TableRowColumn>{debt.name}</TableRowColumn>
+            <TableRowColumn>{`${debt.balance} €`}</TableRowColumn>
+          </TableRow>
+        ))}
       </TableBody>
     </Table>
   </Paper>

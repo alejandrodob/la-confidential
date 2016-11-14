@@ -1,7 +1,7 @@
 import React from 'react';
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
 
-const CodeBlockTitle = (props) => (
+const PaperTitle = (props) => (
   <Toolbar>
     <ToolbarGroup>
       <ToolbarTitle text={props.text || ''} />
@@ -9,4 +9,4 @@ const CodeBlockTitle = (props) => (
   </Toolbar>
 );
 
-export default CodeBlockTitle;
+export default PaperTitle;

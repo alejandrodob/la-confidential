@@ -6,7 +6,7 @@ import Divider from 'material-ui/Divider';
 import PaperTitle from './PaperTitle';
 
 
-const ExpenseList = () => (
+const ExpenseList = (props) => (
   <Paper>
     <PaperTitle text='Últimos Gastos' />
     <Table selectable={false} >
@@ -18,26 +18,13 @@ const ExpenseList = () => (
         </TableRow>
       </TableHeader>
       <TableBody displayRowCheckbox={false} >
-        <TableRow>
-          <TableRowColumn>1/1/20016</TableRowColumn>
-          <TableRowColumn>Papel higiénico</TableRowColumn>
-          <TableRowColumn>2,34€</TableRowColumn>
-        </TableRow>
-        <TableRow>
-          <TableRowColumn>1/1/20016</TableRowColumn>
-          <TableRowColumn>Papel higiénico</TableRowColumn>
-          <TableRowColumn>2,34€</TableRowColumn>
-        </TableRow>
-        <TableRow>
-          <TableRowColumn>1/1/20016</TableRowColumn>
-          <TableRowColumn>Papel higiénico</TableRowColumn>
-          <TableRowColumn>2,34€</TableRowColumn>
-        </TableRow>
-        <TableRow>
-          <TableRowColumn>1/1/20016</TableRowColumn>
-          <TableRowColumn>Papel higiénico</TableRowColumn>
-          <TableRowColumn>2,34€</TableRowColumn>
-        </TableRow>
+        {props.expenses.map((expense, index) => (
+          <TableRow key={index} >
+            <TableRowColumn>{expense.date}</TableRowColumn>
+            <TableRowColumn>{expense.description}</TableRowColumn>
+            <TableRowColumn>{expense.amount}</TableRowColumn>
+          </TableRow>
+        ))}
       </TableBody>
     </Table>
     <Divider />
