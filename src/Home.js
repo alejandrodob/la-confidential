@@ -2,6 +2,7 @@ import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar';
+import { Link } from 'react-router';
 import ExpenseList from './ExpenseList';
 import DebtsSummary from './DebtsSummary';
 import NavbarMenu from './NavbarMenu';
@@ -24,7 +25,7 @@ const Home = () => (
   <MuiThemeProvider>
     <div>
       <AppBar title="L.A." iconElementLeft={<NavbarMenu />} />
-      <RaisedButton label="Nuevo Gasto" primary={true} />
+      <RaisedButton label={<Link to="/expenses/new">Nuevo Gasto</Link>} primary={true} />
       <DebtsSummary debts={debts} />
       <ExpenseList expenses={expenses} />
     </div>
