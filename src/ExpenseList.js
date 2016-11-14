@@ -22,7 +22,7 @@ const ExpenseList = (props) => (
           <TableRow key={index} >
             <TableRowColumn>{expense.date}</TableRowColumn>
             <TableRowColumn>{expense.description}</TableRowColumn>
-            <TableRowColumn>{expense.amount}</TableRowColumn>
+            <TableRowColumn>{`${expense.amount} €`}</TableRowColumn>
           </TableRow>
         ))}
       </TableBody>
