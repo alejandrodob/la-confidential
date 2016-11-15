@@ -5,6 +5,7 @@ const PaperTitle = (props) => (
   <Toolbar>
     <ToolbarGroup>
       <ToolbarTitle text={props.text || ''} />
+      {props.children}
     </ToolbarGroup>
   </Toolbar>
 );

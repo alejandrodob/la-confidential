@@ -3,12 +3,12 @@ import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowCol
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import Divider from 'material-ui/Divider';
+import CircularProgress from 'material-ui/CircularProgress';
 import PaperTitle from './PaperTitle';
 
-
-const ExpenseList = (props) => (
-  <Paper>
-    <PaperTitle text='Últimos Gastos' />
+const ExpensesTable = (props) => {
+  if (props.expenses.list.length === 0) return null;
+  return (
     <Table selectable={false} >
       <TableHeader displaySelectAll={false} adjustForCheckbox={false} >
         <TableRow>
@@ -18,7 +18,7 @@ const ExpenseList = (props) => (
         </TableRow>
       </TableHeader>
       <TableBody displayRowCheckbox={false} >
-        {props.expenses.map((expense, index) => (
+        {props.expenses.list.map((expense, index) => (
           <TableRow key={index} >
             <TableRowColumn>{expense.date}</TableRowColumn>
             <TableRowColumn>{expense.description}</TableRowColumn>
@@ -27,9 +27,22 @@ const ExpenseList = (props) => (
         ))}
       </TableBody>
     </Table>
-    <Divider />
-    <RaisedButton label="Más" primary={true} />
-  </Paper>
-);
+  );
+}
+
+
+const ExpenseList = (props) => {
+  const spinner = (props.expenses.fetching) ?
+    <CircularProgress style={{ left: '10%'}} /> :
+    null;
+  return (
+    <Paper>
+      <PaperTitle text='Últimos Gastos'>{spinner}</PaperTitle>
+      <ExpensesTable expenses={props.expenses} />
+      <Divider />
+      <RaisedButton label="Más" primary={true} />
+    </Paper>
+  );
+};
 
 export default ExpenseList;

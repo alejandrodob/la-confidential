@@ -1,27 +1,46 @@
-export const requestExpenses = () => {
+import { getExpenses, getPayoffs } from './api';
+
+export const REQUEST_EXPENSES = 'REQUEST_EXPENSES';
+export const REQUEST_PAYOFFS = 'REQUEST_PAYOFFS';
+export const RECEIVE_EXPENSES = 'RECEIVE_EXPENSES';
+export const RECEIVE_PAYOFFS = 'RECEIVE_PAYOFFS';
+
+const requestExpenses = () => {
   return {
-    type: 'REQUEST_EXPENSES'
+    type: REQUEST_EXPENSES
   };
 };
 
-
-export const receiveExpenses = (expenses) => {
+const receiveExpenses = (expenses) => {
   return {
-    type: 'RECEIVE_EXPENSES',
+    type: RECEIVE_EXPENSES,
     expenses
   };
 };
 
-export const requestPayoffs = () => {
-  return {
-    type: 'REQUEST_PAYOFFS'
+export const fetchExpenses = () => {
+  return (dispatch) => {
+    dispatch(requestExpenses())
+    return getExpenses().then((expenses) => dispatch(receiveExpenses(expenses)));
   };
 };
 
-
-export const receivePayoffs = (payoffs) => {
+const requestPayoffs = () => {
   return {
-    type: 'RECEIVE_PAYOFFS',
+    type: REQUEST_PAYOFFS
+  };
+};
+
+const receivePayoffs = (payoffs) => {
+  return {
+    type: RECEIVE_PAYOFFS,
     payoffs
+  };
+};
+
+export const fetchPayoffs = () => {
+  return (dispatch) => {
+    dispatch(requestPayoffs())
+    return getPayoffs().then((payoffs) => dispatch(receivePayoffs(payoffs)));
   };
 };

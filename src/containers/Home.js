@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar';
@@ -6,31 +7,42 @@ import { Link } from 'react-router';
 import ExpenseList from '../components/ExpenseList';
 import DebtsSummary from '../components/DebtsSummary';
 import NavbarMenu from '../components/NavbarMenu';
+import { fetchExpenses, fetchPayoffs } from '../actions';
 
 
-const debts = [
-  { name: 'Felipe', balance: -100.00 },
-  { name: 'José', balance: -100.00 },
-  { name: 'Aswel', balance: 200.00 },
-];
+class Home extends Component {
+  render() {
+    return (
+      <MuiThemeProvider>
+        <div>
+          <AppBar title="L.A." iconElementLeft={<NavbarMenu />} />
+          <RaisedButton label={<Link to="/expenses/new">Nuevo Gasto</Link>} primary={true} />
+          <RaisedButton label={<Link to="/payoffs/new">Saldar Deuda</Link>} primary={true} />
+          <DebtsSummary expenses={this.props.expenses} payoffs={this.props.payoffs} />
+          <ExpenseList expenses={this.props.expenses} />
+        </div>
+      </MuiThemeProvider>
+    );
+  }
 
-const expenses = [
-  { date: '01/05/2016', description: 'Papel higiénico', amount: 2.75 },
-  { date: '10/04/2016', description: 'Limones, café', amount: 3.55 },
-  { date: '12/03/2016', description: 'Bolsas basura', amount: 1.85 },
-  { date: '27/01/2016', description: 'Cervezas', amount: 6.75 },
-];
+  componentDidMount() {
+    this.props.fetchExpenses();
+    this.props.fetchPayoffs();
+  }
+}
 
-const Home = () => (
-  <MuiThemeProvider>
-    <div>
-      <AppBar title="L.A." iconElementLeft={<NavbarMenu />} />
-      <RaisedButton label={<Link to="/expenses/new">Nuevo Gasto</Link>} primary={true} />
-      <RaisedButton label={<Link to="/payoffs/new">Saldar Deuda</Link>} primary={true} />
-      <DebtsSummary debts={debts} />
-      <ExpenseList expenses={expenses} />
-    </div>
-  </MuiThemeProvider>
-);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchExpenses: () => dispatch(fetchExpenses()),
+    fetchPayoffs: () => dispatch(fetchPayoffs())
+  }
+};
 
-export default Home;
+const mapStateToProps = (state) => {
+  return {
+    expenses: state.expenses,
+    payoffs: state.payoffs
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);;
