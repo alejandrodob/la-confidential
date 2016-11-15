@@ -1,8 +1,8 @@
 import React from 'react';
 import { Router, Route, browserHistory } from 'react-router';
-import Home from './Home';
-import NewExpense from './NewExpense';
-import NewPayoff from './NewPayoff';
+import Home from './containers/Home';
+import NewExpense from './containers/NewExpense';
+import NewPayoff from './containers/NewPayoff';
 
 
 const Routes = (props) => (

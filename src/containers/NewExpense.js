@@ -6,7 +6,7 @@ import DatePicker from 'material-ui/DatePicker';
 import Checkbox from 'material-ui/Checkbox';
 import Card from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
-import NavbarMenu from './NavbarMenu';
+import NavbarMenu from '../components/NavbarMenu';
 
 
 const participants = [

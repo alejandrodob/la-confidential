@@ -3,9 +3,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar';
 import { Link } from 'react-router';
-import ExpenseList from './ExpenseList';
-import DebtsSummary from './DebtsSummary';
-import NavbarMenu from './NavbarMenu';
+import ExpenseList from '../components/ExpenseList';
+import DebtsSummary from '../components/DebtsSummary';
+import NavbarMenu from '../components/NavbarMenu';
 
 
 const debts = [

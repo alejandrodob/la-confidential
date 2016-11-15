@@ -7,7 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import TextField from 'material-ui/TextField';
-import NavbarMenu from './NavbarMenu';
+import NavbarMenu from '../components/NavbarMenu';
 
 
 const participants = [
