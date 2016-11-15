@@ -26,6 +26,7 @@ const Home = () => (
     <div>
       <AppBar title="L.A." iconElementLeft={<NavbarMenu />} />
       <RaisedButton label={<Link to="/expenses/new">Nuevo Gasto</Link>} primary={true} />
+      <RaisedButton label={<Link to="/payoffs/new">Saldar Deuda</Link>} primary={true} />
       <DebtsSummary debts={debts} />
       <ExpenseList expenses={expenses} />
     </div>
