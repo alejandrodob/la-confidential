@@ -11,21 +11,24 @@ const initialPayoffs = { fetching: false, list: [] };
 
 const expenses = (state=initialExpenses, action) => {
   switch (action.type) {
-      case REQUEST_EXPENSES:
-        return Object.assign({}, state, { fetching: true });
-      case RECEIVE_EXPENSES:
-        return { fetching: false, list: action.expenses };
-      default:
-        return state;
-    }
+    case REQUEST_EXPENSES:
+      return Object.assign({}, state, { fetching: true });
+    case RECEIVE_EXPENSES:
+      return { fetching: false, list: action.expenses };
+    default:
+      return state;
+  }
 };
 
 const payoffs = (state=initialPayoffs, action) => {
   switch (action.type) {
-      
-      default:
-        return state;
-    }
+    case REQUEST_PAYOFFS:
+      return Object.assign({}, state, { fetching: true });
+    case RECEIVE_PAYOFFS:
+      return { fetching: false, list: action.payoffs };
+    default:
+      return state;
+  }
 };
 
 const rootReducer = combineReducers({

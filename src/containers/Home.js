@@ -8,6 +8,7 @@ import ExpenseList from '../components/ExpenseList';
 import DebtsSummary from '../components/DebtsSummary';
 import NavbarMenu from '../components/NavbarMenu';
 import { fetchExpenses, fetchPayoffs } from '../actions';
+import { calculateDebts } from '../selectors';
 
 
 class Home extends Component {
@@ -18,7 +19,7 @@ class Home extends Component {
           <AppBar title="L.A." iconElementLeft={<NavbarMenu />} />
           <RaisedButton label={<Link to="/expenses/new">Nuevo Gasto</Link>} primary={true} />
           <RaisedButton label={<Link to="/payoffs/new">Saldar Deuda</Link>} primary={true} />
-          <DebtsSummary expenses={this.props.expenses} payoffs={this.props.payoffs} />
+          <DebtsSummary debts={this.props.debts} />
           <ExpenseList expenses={this.props.expenses} />
         </div>
       </MuiThemeProvider>
@@ -41,8 +42,9 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     expenses: state.expenses,
-    payoffs: state.payoffs
+    payoffs: state.payoffs,
+    debts: calculateDebts(state.expenses, state.payoffs)
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);;
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
