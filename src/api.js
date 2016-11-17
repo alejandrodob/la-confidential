@@ -9,6 +9,12 @@ const payoffs = [
   { who: 'Felipe', whom: 'Aswel', amount: 75.00 }
 ];
 
+const people = [
+  { username: 'felipe.gozalo@gmail.com', name: 'Felipe' },
+  { username: 'joseluescudero@gmail.com', name: 'José' },
+  { username: 'alejandrodob@gmail.com', name: 'Aswel' }
+];
+
 export const getExpenses = () => {
   return new Promise(
     (resolve, reject) => {
@@ -28,6 +34,19 @@ export const getPayoffs = () => {
       window.setTimeout(
         () => {
             resolve(payoffs);
+        },
+        Math.random() * 1000
+      )
+    }
+  );
+};
+
+export const getPeople = () => {
+  return new Promise(
+    (resolve, reject) => {
+      window.setTimeout(
+        () => {
+            resolve(people);
         },
         Math.random() * 1000
       )

@@ -1,9 +1,11 @@
-import { getExpenses, getPayoffs } from './api';
+import { getExpenses, getPayoffs, getPeople } from './api';
 
 export const REQUEST_EXPENSES = 'REQUEST_EXPENSES';
 export const REQUEST_PAYOFFS = 'REQUEST_PAYOFFS';
 export const RECEIVE_EXPENSES = 'RECEIVE_EXPENSES';
 export const RECEIVE_PAYOFFS = 'RECEIVE_PAYOFFS';
+export const REQUEST_PEOPLE = 'REQUEST_PEOPLE';
+export const RECEIVE_PEOPLE = 'RECEIVE_PEOPLE';
 
 const requestExpenses = () => {
   return {
@@ -42,5 +44,25 @@ export const fetchPayoffs = () => {
   return (dispatch) => {
     dispatch(requestPayoffs())
     return getPayoffs().then((payoffs) => dispatch(receivePayoffs(payoffs)));
+  };
+};
+
+const requestPeople = () => {
+  return {
+    type: REQUEST_PEOPLE
+  };
+};
+
+const receivePeople = (people) => {
+  return {
+    type: RECEIVE_PEOPLE,
+    people
+  };
+};
+
+export const fetchPeople = () => {
+  return (dispatch) => {
+    dispatch(requestPeople())
+    return getPeople().then((people) => dispatch(receivePeople(people)));
   };
 };
